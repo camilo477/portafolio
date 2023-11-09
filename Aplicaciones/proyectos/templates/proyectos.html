@@ -1,0 +1,44 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Proyectos{% endblock %}
+
+{% block content %}
+ 
+<body class="d-flex flex-column h-100 bg-light">
+    <main class="flex-shrink-0">
+        <section class="py-5">
+            <div class="container px-5 mb-5">
+                <div class="text-center mb-5">
+                    <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Proyectos</span></h1>
+                </div>
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-11 col-xl-9 col-xxl-8">
+                        {% for proyecto in proyectos %}
+                            <!-- Project Card as a Button -->
+                            <a href="{% if proyecto.codigo == '1' %}/recetas{% endif %}" class="card overflow-hidden shadow rounded-4 border-0 mb-5">
+                                <div class="card-body p-0">
+                                    <div class="d-flex align-items-center">
+                                        <div class="p-5">
+                                            <h2 class="fw-bolder">{{ proyecto.nombre }}</h2>
+                                            <p>{{ proyecto.descripcion }}</p>
+                                        </div>
+                                        {% if proyecto.imageproj %}
+                                            <img class="img-fluid" src="{{ proyecto.imageproj.url }}" alt="{{ proyecto.nombre }}" />
+                                        {% else %}
+
+                                            <p>No hay imagen disponible</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Call to action section-->
+       
+    </main>
+</body>
+
+{% endblock %}
